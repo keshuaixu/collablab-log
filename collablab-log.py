@@ -12,14 +12,20 @@ try:
     r = requests.get('http://collablab.wpi.edu/lab/status').json()
     lab_open = r['open']
     members = dict.fromkeys(r['members'], 1)
+    json_body = [
+        {
+            'measurement': 'head_count',
+            'fields': {'value': len(members)}
+        }
+    ]
     if len(members) > 0:
-        json_body = [
+        json_body.append(
             {
                 'measurement': 'occupants',
                 'fields': members
             }
-        ]
-        db.write_points(json_body)
+        )
+    db.write_points(json_body)
 
 except Exception as e:
     logging.exception('bork')
