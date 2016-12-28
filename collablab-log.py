@@ -14,7 +14,9 @@ try:
     r = requests.get('http://collablab.wpi.edu/lab/status').json()
 
     try:
-        red.hmset('collablab_names', r['members'])
+        names = r['members']
+        if len(names) > 0:
+            red.hmset('collablab_names', names)
     except Exception as e:
         logging.exception('redis fucked')
 
