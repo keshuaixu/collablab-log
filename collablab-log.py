@@ -15,7 +15,7 @@ try:
     if len(members) > 0:
         json_body = [
             {
-                'measurement': 'status',
+                'measurement': 'occupants',
                 'fields': members
             }
         ]
