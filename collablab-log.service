@@ -1,0 +1,6 @@
+[Unit]
+Description=Log collablab occupants to influxdb
+
+[Service]
+Type=simple
+ExecStart=/home/ubuntu/collablab-log/venv/bin/python3 /home/ubuntu/collablab-log/collablab-log.py

@@ -1,0 +1,9 @@
+[Unit]
+Description=Run collablab-log every minute
+
+[Timer]
+OnCalendar=minutely
+Unit=collablab-log.service
+
+[Install]
+WantedBy=timers.target
