@@ -29,13 +29,20 @@ try:
                 'fields': {'value': len(members)}
             }
         ]
-        if len(members) > 0:
-            json_body.append(
-                {
-                    'measurement': 'occupants',
-                    'fields': members
-                }
-            )
+        occupant_data = [
+            {
+                'measurement': 'names',
+                'tags': {'username': u},
+                'fields': {'value': 1}
+            }
+            for u in members]
+        json_body += occupant_data
+        # json_body.append(
+        #     {
+        #         'measurement': 'occupants',
+        #         'fields': members
+        #     }
+        # )
         db.write_points(json_body)
     except Exception as e:
         logging.exception('influxdb fucked')
